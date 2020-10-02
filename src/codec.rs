@@ -33,6 +33,8 @@ use arrayvec::ArrayVec;
 
 use byte_slice_cast::{AsByteSlice, IntoVecOf};
 
+use rustversion;
+
 #[cfg(any(feature = "std", feature = "full"))]
 use crate::alloc::{
 	string::String,
@@ -241,7 +243,8 @@ impl<W: std::io::Write> Output for W {
 ///
 /// This enum provides type information to optimize encoding/decoding by doing fake specialization.
 #[doc(hidden)]
-#[non_exhaustive]
+
+#[rustversion::attr(since(1.41), non_exhaustive)]
 pub enum TypeInfo {
 	/// Default value of [`Encode::TYPE_INFO`] to not require implementors to set this value in the trait.
 	Unknown,
